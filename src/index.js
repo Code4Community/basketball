@@ -5,7 +5,7 @@ import ExampleScene from "./scenes/ExampleScene";
 // You can define a custom theme here and pass it into .create below
 const theme = {
   "&": {
-    color: "red",
+    color: "blue",
     backgroundColor: "gray",
   },
   ".cm-content, .cm-gutter": {
