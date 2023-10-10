@@ -31,6 +31,7 @@ export default class ExampleScene extends Phaser.Scene {
     C4C.Editor.setText(`moveRight(20)`);
 
     this.smiley = this.add.sprite(600, 300, "smiley");
+    const tileMap = this.make.tilemap({w})
 
     // Define new function and store it in the symbol "alert-hello". This
     // function can now be called from our little language.
