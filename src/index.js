@@ -24,6 +24,8 @@ var config = {
     createContainer: true,
   },
   scene: [ExampleScene],
+  
 };
 
 const game = new Phaser.Game(config);
+
