@@ -4,6 +4,7 @@ import logoImg from "../assets/logo.png";
 import smileyImg from "../assets/smiley.png";
 import court from "../assets/court.png";
 import derrick from "../assets/derrick_rose.jpg";
+import curry from "../assets/curry.jpg";
 import C4C from "c4c-lib";
 
 
@@ -25,15 +26,22 @@ export default class Scene1 extends Phaser.Scene {
     this.load.image("smiley", smileyImg);
     this.load.image('court', court);
     this.load.image('playa', derrick);
+    this.load.image('enemy', curry);
   }
 
   create() {
 
-    this.add.image(0, 0, 'court').setOrigin(0,0);
+    this.add.image(1000, 500, 'court').setOrigin(0,0);
     var player = this.physics.add.sprite(0, 0, 'playa').setOrigin(0,0);
     player.setScale(0.1);
 
   }
+
+  enemies = this.add.group({
+    key: 'enemy', 
+    repeat: 3,
+    setXY
+  })
 }
 //defender use group on tutorial same sprite use place holder.
 
