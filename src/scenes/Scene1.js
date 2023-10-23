@@ -35,3 +35,30 @@ export default class Scene1 extends Phaser.Scene {
 
   }
 }
+//defender use group on tutorial same sprite use place holder.
+
+class CourtBoundaries {
+
+  title_increment;
+  full_X_border;
+  full_Y_border;
+  court_offset_X;
+  court_offset_Y;
+  court_border_X;
+  court_border_Y;
+
+  constructor(posX, posY) { //posX posY added for unrestricted placement of court
+      this.title_increment = 49;
+      this.full_X_border = 1262 + posX;
+      this.full_Y_border = 346 + posY;
+      this.court_offset_X = 175;
+      this.court_offset_Y = 90;
+      this.court_border_X = this.full_X_border - 2 * this.court_offset_X;
+      this.court_border_Y = this.full_Y_border - 2 * this.court_offset_Y;
+  }
+
+  checkCollision(posX, posY){
+    let flag = false;
+    return 
+  }
+}
