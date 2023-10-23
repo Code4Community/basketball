@@ -31,7 +31,8 @@ export default class Scene1 extends Phaser.Scene {
 
   create() {
 
-    this.add.image(1000, 500, 'court').setOrigin(0,0);
+    this.add.image(0, 0,'court').setOrigin(0,0);
+    //this.add.image(0,0,'playa');
     var player = this.physics.add.sprite(0, 0, 'playa').setOrigin(0,0);
     player.setScale(0.1);
 
@@ -44,6 +45,7 @@ export default class Scene1 extends Phaser.Scene {
   })
 }
 //defender use group on tutorial same sprite use place holder.
+
 
 class CourtBoundaries {
 
