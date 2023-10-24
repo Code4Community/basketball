@@ -16,7 +16,7 @@ const theme = {
 C4C.Editor.create(document.body, null, true);
 
 var config = {
-  parent: "body",
+  parent: "game",
   type: Phaser.AUTO,
   width: 800,
   height: 600,
