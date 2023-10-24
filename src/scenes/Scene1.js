@@ -34,15 +34,21 @@ export default class Scene1 extends Phaser.Scene {
     this.add.image(0, 0,'court').setOrigin(0,0);
     //this.add.image(0,0,'playa');
     var player = this.physics.add.sprite(0, 0, 'playa').setOrigin(0,0);
-    player.setScale(0.1);
+    var curry = this.physics.add.sprite(200, 0, 'enemy').setOrigin(0,0);
+    player.setScale(.1);
+    curry.setScale(.2);
+
+    enemies = this.physics.add.group({
+      setScale: {x: .1, y: .1},
+      key: 'enemy',
+      repeat: 3,
+      setXY: {x: 850, y: 100, stepY: 100},
+    })
 
   }
 
-  enemies = this.add.group({
-    key: 'enemy', 
-    repeat: 3,
-    setXY
-  })
+
+
 }
 //defender use group on tutorial same sprite use place holder.
 
