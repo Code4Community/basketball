@@ -18,12 +18,12 @@ C4C.Editor.create(document.body, null, true);
 var config = {
   parent: "game",
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  width: 1262,
+  height: 346,
   dom: {
     createContainer: true,
   },
-  scene: [ExampleScene],
+  scene: [Scene1],
 };
 
 const game = new Phaser.Game(config);
