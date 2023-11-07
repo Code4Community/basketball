@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 body {
     display: grid;
     height: 50vh;
@@ -11,7 +9,6 @@ anyGame {
     width: 800px;
 }
 
->>>>>>> playa
 #container {
     display: grid;
     grid-template-columns: 1fr 4fr;
