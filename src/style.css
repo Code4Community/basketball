@@ -1,7 +1,7 @@
 body {
     display: grid;
     height: 50vh;
-    justify-item: center;
+    justify-items: center;
 }
 anyGame {
     align-self: center;
