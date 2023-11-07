@@ -40,7 +40,7 @@ export default class Scene1 extends Phaser.Scene {
     player.setScale(0.1);
 
     ball = this.physics.add.sprite(500, 10, 'ballz').setOrigin(0,0);
-    ball.setScale(.1);
+    //ball.setScale(.1);
 
     this.add.text(10, 10, 'Press the SPACE BAR', { font: '16px Courier', fill: '#ffffff' }).setShadow(1, 1);
 
@@ -48,25 +48,16 @@ export default class Scene1 extends Phaser.Scene {
     
     const spacebar = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)
 
-    spacebar.on("down", (key, event) =>
-    {
-      passBall();
-    })
+  spacebar.on("down", (key, event) =>
+  {
+    ball.setVisibile()
+    this.physics.moveToObject(ball, player);
+  })
 
   }
 
   update() {
 
 
-  }
-  
-  passBall(){
-
-    this.physics.moveToObject(ball, player);
-  
-  }
-
-  
+  } 
 }
-
-
