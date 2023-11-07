@@ -1,3 +1,17 @@
+<<<<<<< HEAD
+=======
+body {
+    display: grid;
+    height: 50vh;
+    justify-item: center;
+}
+anyGame {
+    align-self: center;
+    height: 50px;
+    width: 800px;
+}
+
+>>>>>>> playa
 #container {
     display: grid;
     grid-template-columns: 1fr 4fr;
