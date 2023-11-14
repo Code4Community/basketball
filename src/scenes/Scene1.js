@@ -37,12 +37,6 @@ export default class Scene1 extends Phaser.Scene {
     player.setScale(0.1);
 
   }
-
-  enemies = this.add.group({
-    key: 'enemy', 
-    repeat: 3,
-    setXY
-  })
 }
 //defender use group on tutorial same sprite use place holder.
 
