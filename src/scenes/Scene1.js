@@ -4,7 +4,7 @@ import logoImg from "../assets/logo.png";
 import smileyImg from "../assets/smiley.png";
 import court from "../assets/court.png";
 import derrick from "../assets/derrick_rose.jpg";
-import curry from "../assets/curry.jpg";
+import enemy from "../assets/defender.png";
 import C4C from "c4c-lib";
 
 
@@ -26,7 +26,7 @@ export default class Scene1 extends Phaser.Scene {
     this.load.image("smiley", smileyImg);
     this.load.image('court', court);
     this.load.image('playa', derrick);
-    this.load.image('enemy', curry);
+    this.load.image('enemy', enemy);
   }
 
   create() {
@@ -34,17 +34,38 @@ export default class Scene1 extends Phaser.Scene {
     this.add.image(0, 0,'court').setOrigin(0,0);
     //this.add.image(0,0,'playa');
     var player = this.physics.add.sprite(0, 0, 'playa').setOrigin(0,0);
-    var curry = this.physics.add.sprite(200, 0, 'enemy').setOrigin(0,0);
+    var enemy = this.physics.add.sprite(200, 0, 'enemy').setOrigin(0,0);
+    //this.physics.moveTo(player, player.x - 300, player.y - 300, 50)
     player.setScale(.1);
-    curry.setScale(.2);
+    enemy.setScale(1);
 
-    enemies = this.physics.add.group({
-      setScale: {x: .1, y: .1},
+    let enemies = this.physics.add.group({
+      setScale: {x: .2, y: .2},
       key: 'enemy',
-      repeat: 3,
-      setXY: {x: 850, y: 100, stepY: 100},
+      repeat: 2,
+      setXY: {x: 850, y: 100, stepY: 85},
     })
 
+    //enemies.children.iterate(function (child) {
+       //this.physics.moveTo(child, child.x - 300, child.y - 300, 150)
+       //child.setVisible(false);
+    //});
+
+    //add to array seperately?
+    
+    this.tweens.add({
+      targets: enemies.getChildren(),
+      y: '+=90',
+      duration: 1200
+  });
+
+
+
+
+
+  }
+
+  update() {
   }
 
 
