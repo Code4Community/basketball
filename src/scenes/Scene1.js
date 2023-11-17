@@ -10,8 +10,8 @@ let deltaX = 50;
 let deltaY = 50;
 
 export default class Scene1 extends Phaser.Scene {
-  constructor() {
-    super("Example");
+  constructor () {
+      super({ key: 'Scene1', active: true });
   }
 
   preload() {
