@@ -1,11 +1,20 @@
+
+body {
+    display: grid;
+    height: 50vh;
+    justify-items: center;
+}
+anyGame {
+    align-self: center;
+    height: 50px;
+    width: 800px;
+}
+
 #container {
     display: grid;
     grid-template-columns: 1fr 4fr;
     column-gap: 24px;
     margin: 0 auto;
     max-width: 1400px;
-  }
-  
-  #container {
     padding: 10px;
   }
