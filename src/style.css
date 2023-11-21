@@ -11,10 +11,10 @@ anyGame {
 }
 
 #container {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    column-gap: 24px;
-    margin: 0 auto;
-    max-width: 1400px;
-    padding: 10px;
-  }
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  column-gap: 24px;
+  margin: 0 auto;
+  max-width: 1400px;
+  padding: 10px;
+}

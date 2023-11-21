@@ -7,38 +7,29 @@ import derrick from "../assets/derrick_rose.jpg";
 import enemy from "../assets/defender.png";
 import C4C from "c4c-lib";
 
-
-function enterButtonHoverState(btn) {
-  btn.setStyle({ fill: "#ff0" });
-}
-
-function enterButtonRestState(btn) {
-  btn.setStyle({ fill: "#fff" });
-}
+let deltaX = 50;
+let deltaY = 50;
 
 export default class Scene1 extends Phaser.Scene {
-  constructor() {
-    super("Example");
+  constructor () {
+      super({ key: 'Scene1', active: true });
   }
 
   preload() {
     this.load.image("logo", logoImg);
     this.load.image("smiley", smileyImg);
     this.load.image('court', court);
-    this.load.image('playa', derrick);
-    this.load.image('enemy', enemy);
+    this.load.image('derrick', derrick);
   }
 
   create() {
-
-    this.add.image(0, 0,'court').setOrigin(0,0);
-    //this.add.image(0,0,'playa');
-    var player = this.physics.add.sprite(0, 0, 'playa').setOrigin(0,0);
-    var enemy = this.physics.add.sprite(200, 0, 'enemy').setOrigin(0,0);
-    //this.physics.moveTo(player, player.x - 300, player.y - 300, 50)
-    player.setScale(.1);
+    this.add.image(0, 0, 'court').setOrigin(0,0);
+    this.player = this.physics.add.sprite(0, 50, 'derrick').setOrigin(0,0);
+    this.player.setScale(0.05);
+    let enemy = this.physics.add.sprite(200, 0, 'enemy').setOrigin(0,0);
     enemy.setScale(1);
-
+    
+    // Creating enemies group
     let enemies = this.physics.add.group({
       setScale: {x: .2, y: .2},
       key: 'enemy',
@@ -53,15 +44,31 @@ export default class Scene1 extends Phaser.Scene {
 
     //add to array seperately?
     
+    // tween for enemies movement
     this.tweens.add({
       targets: enemies.getChildren(),
       y: '+=90',
       duration: 1200
-  });
+    });
 
+    // Creating keys for placeholder to call move functions
+    this.keyLeft = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+    this.keyRight = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+    this.keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
 
-
-
+    // Placeholders to call move functions
+    this.keyLeft.on('down', (key, event) => {
+      this.posX = this.player.x;
+        this.moveLeft(this.player);
+    });
+    this.keyRight.on('down', (key, event) => {
+      this.posX = this.player.x;
+      this.moveRight(this.player);
+    });
+    this.keyUp.on('down', (key, event) => {
+      this.posX = this.player.x;
+      this.moveForward(this.player);
+    });
 
   }
 
@@ -69,6 +76,28 @@ export default class Scene1 extends Phaser.Scene {
     this.add.image(0, 0, 'court').setOrigin(0,0);
     //var player = this.physics.add.sprite(0, 0, 'playa').setOrigin(0,0);
     //player.setScale(0.1);
+    
+    // Ensures player only moves as far as we want
+    if (this.player.body.speed > 0)
+    {
+        if (this.player.x >= this.posX + deltaX)
+        {
+            this.player.setVelocity(0, 0);
+        }
+    }
+  }
+
+  // Our move functions for the player
+  moveLeft(player) {
+    this.physics.moveTo(player, player.x + deltaX, player.y - deltaY, 200);
+  }
+
+  moveRight(player) {
+    this.physics.moveTo(player, player.x + deltaX, player.y + deltaY, 200);
+  }
+
+  moveForward(player) {
+    this.physics.moveTo(player, player.x + deltaX, player.y, 200);
   }
 
 

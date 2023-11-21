@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import C4C from "c4c-lib";
 import ExampleScene from "./scenes/ExampleScene";
 import Scene1 from "./scenes/Scene1";
+import Dunks from "./scenes/Dunks";
 
 // You can define a custom theme here and pass it into .create below
 const theme = {
@@ -32,7 +33,7 @@ var config = {
   dom: {
     createContainer: true,
   },
-  scene: [Scene1],
+  scene: [Scene1, Dunks],
 };
 
 const game = new Phaser.Game(config);
