@@ -1,0 +1,173 @@
+Quick and Dirty Git Command Reference:
+
+These are very basic commands that can be used to perform most day to day tasks in git.  You should use these in git bash, since the normal windows
+
+command line shell is not set up by default to understand UNIX/git commands.
+
+ 
+
+Note:  Anything included in < > will be replaced by a name specific to your situation.  For example, <branch to checkout> could be develop.
+
+ 
+
+//Cloneing: 
+
+ 
+
+The following will clone a repo into the given directory and checkout the given branch:
+
+git clone --branch <branch to checkout> <URL from VSTS> <target directory>
+
+ 
+
+//Navigation:
+
+ 
+
+View all files and directories in the current directory:
+
+ls
+
+ 
+
+Navigate to file or directory.  If a directory is a git directory and you are using git bash it will automatically be detected.  And
+
+labeled with the currently checked out branch like /c/git/CPP.ISORating.DatabaseChanges (user)
+
+cd <file path>
+
+ 
+
+Navigate to file or directory in parent directory:
+
+cd ../<file path>
+
+ 
+
+The above can be used multiple times if you need to go up multiple directories:
+
+cd ../../../<file path>
+
+ 
+
+//Branch management:
+
+ 
+
+Viewing all local branches:
+
+git branch
+
+ 
+
+Viewing all remote branches:
+
+git branch -r
+
+ 
+
+Creating new local branch.  All new branch commands can use file paths, for example, userstory/Branchname is a valid argument here:
+
+git branch <branchname>
+
+ 
+
+Deleting a local branch:
+
+git branch -d <branchname>
+
+ 
+
+//Checking Out Branches:
+
+ 
+
+Checking out a branch (also works for remote branches in later versions of git):
+
+git checkout <branchname>
+
+ 
+
+Checking out a new branch that does not already exist:
+
+git checkout -b <new branchname>
+
+ 
+
+//Getting Latest:
+
+ 
+
+Update the status of the remote version of your current branch:
+
+git fetch
+
+ 
+
+Pulls the latest remote changes made to your current branch into your local copy (this can be done without fetching):
+
+git pull
+
+ 
+
+//Staging/Committing Changes:
+
+ 
+
+See all changed files on current branch:
+
+git status
+
+ 
+
+Stage all changes:
+
+git add -A
+
+ 
+
+Stage changes for specific file:
+
+git add <filename>
+
+ 
+
+Commit changes to local branch with message(not including a message will prompt a vim editor to do so):
+
+git commit -m <Message>
+
+ 
+
+//Pushing Changes to Origin
+
+ 
+
+Push changes to remote branch.  If the branch does not currently exist on origin a new one is created with the same name.:
+
+git push origin "<branchname>"
+
+ 
+
+//Checking History
+
+ 
+
+View the commit history of current branch:
+
+git log
+
+ 
+
+//Branch Cleanup
+
+ 
+
+Unstage local changes:
+
+git reset
+
+ 
+
+Remove all uncommitted changes (even staged changes):
+
+git reset --hard head

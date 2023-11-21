@@ -66,6 +66,9 @@ export default class Scene1 extends Phaser.Scene {
   }
 
   update() {
+    this.add.image(0, 0, 'court').setOrigin(0,0);
+    //var player = this.physics.add.sprite(0, 0, 'playa').setOrigin(0,0);
+    //player.setScale(0.1);
   }
 
 
