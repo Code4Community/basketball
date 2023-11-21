@@ -20,6 +20,7 @@ export default class Scene1 extends Phaser.Scene {
     this.load.image("smiley", smileyImg);
     this.load.image('court', court);
     this.load.image('derrick', derrick);
+    this.load.image('enemy', enemy);
   }
 
   create() {
@@ -73,9 +74,6 @@ export default class Scene1 extends Phaser.Scene {
   }
 
   update() {
-    this.add.image(0, 0, 'court').setOrigin(0,0);
-    //var player = this.physics.add.sprite(0, 0, 'playa').setOrigin(0,0);
-    //player.setScale(0.1);
     
     // Ensures player only moves as far as we want
     if (this.player.body.speed > 0)
