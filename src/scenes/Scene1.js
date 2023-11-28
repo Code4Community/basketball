@@ -27,29 +27,45 @@ export default class Scene1 extends Phaser.Scene {
     this.add.image(0, 0, 'court').setOrigin(0,0);
     this.player = this.physics.add.sprite(0, 50, 'derrick').setOrigin(0,0);
     this.player.setScale(0.05);
-    let enemy = this.physics.add.sprite(200, 0, 'enemy').setOrigin(0,0);
-    enemy.setScale(1);
-    
-    // Creating enemies group
-    let enemies = this.physics.add.group({
-      setScale: {x: .2, y: .2},
-      key: 'enemy',
-      repeat: 2,
-      setXY: {x: 850, y: 100, stepY: 85},
-    })
+    let enemy = this.physics.add.sprite(600, 200, 'enemy').setOrigin(0,0);
+    enemy.setScale(.2);
 
-    //enemies.children.iterate(function (child) {
-       //this.physics.moveTo(child, child.x - 300, child.y - 300, 150)
-       //child.setVisible(false);
-    //});
+// Creating three separate enemies
+    let enemy1 = this.physics.add.sprite(600, 200, 'enemy').setOrigin(0,0);
+    enemy1.setScale(.2, .2);
 
-    //add to array seperately?
-    
-    // tween for enemies movement
+    let enemy2 = this.physics.add.sprite(600, 200, 'enemy').setOrigin(0,0);
+    enemy2.setScale(.2, .2);
+
+    let enemy3 = this.physics.add.sprite(600, 200, 'enemy').setOrigin(0,0);
+    enemy3.setScale(.2, .2);
+
+// Movement pattern for enemy1 (e.g., vertical movement)
     this.tweens.add({
-      targets: enemies.getChildren(),
+      targets: enemy1,
       y: '+=90',
-      duration: 1200
+      duration: 1000,
+      yoyo: true,
+      repeat: -1
+    });
+
+// Movement pattern for enemy2 (e.g., horizontal movement)
+    this.tweens.add({
+      targets: enemy2,
+      x: '+=100',
+      duration: 1500,
+      yoyo: true,
+      repeat: -1
+    });
+
+// Complex movement pattern for enemy3 (e.g., diagonal movement)
+    this.tweens.add({
+      targets: enemy3,
+      x: '+=120',
+      y: '+=120',
+      duration: 2000,
+      yoyo: true,
+      repeat: -1
     });
 
     // Creating keys for placeholder to call move functions
