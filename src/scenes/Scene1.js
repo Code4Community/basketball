@@ -59,15 +59,12 @@ export default class Scene1 extends Phaser.Scene {
 
     // Placeholders to call move functions
     this.keyLeft.on('down', (key, event) => {
-      this.posX = this.player.x;
         this.moveLeft(this.player);
     });
     this.keyRight.on('down', (key, event) => {
-      this.posX = this.player.x;
       this.moveRight(this.player);
     });
     this.keyUp.on('down', (key, event) => {
-      this.posX = this.player.x;
       this.moveForward(this.player);
     });
 
@@ -87,19 +84,19 @@ export default class Scene1 extends Phaser.Scene {
 
   // Our move functions for the player
   moveLeft(player) {
+    this.posX = this.player.x;
     this.physics.moveTo(player, player.x + deltaX, player.y - deltaY, 200);
   }
 
   moveRight(player) {
+    this.posX = this.player.x;
     this.physics.moveTo(player, player.x + deltaX, player.y + deltaY, 200);
   }
 
   moveForward(player) {
+    this.posX = this.player.x;
     this.physics.moveTo(player, player.x + deltaX, player.y, 200);
   }
-
-
-
 }
 //defender use group on tutorial same sprite use place holder.
 
@@ -126,6 +123,6 @@ class CourtBoundaries {
 
   checkCollision(posX, posY){
     let flag = false;
-    return 
+    return
   }
 }
