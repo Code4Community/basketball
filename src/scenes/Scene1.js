@@ -24,6 +24,7 @@ export default class Scene1 extends Phaser.Scene {
   }
 
   create() {
+    this.myCourt = new Court(0, 0);
     this.add.image(0, 0, 'court').setOrigin(0,0);
     this.player = this.physics.add.sprite(0, 50, 'derrick').setOrigin(0,0);
     this.player.setScale(0.05);
@@ -49,7 +50,9 @@ export default class Scene1 extends Phaser.Scene {
     this.tweens.add({
       targets: enemies.getChildren(),
       y: '+=90',
-      duration: 1200
+      duration: 1200,
+      yoyo: true,
+      repeat: -1,
     });
 
     // Creating keys for placeholder to call move functions
@@ -75,7 +78,7 @@ export default class Scene1 extends Phaser.Scene {
     // Ensures player only moves as far as we want
     if (this.player.body.speed > 0)
     {
-        if (this.player.x >= this.posX + deltaX)
+        if (this.player.x >= this.posX + this.myCourt.tile_increment)
         {
             this.player.setVelocity(0, 0);
         }
@@ -85,34 +88,34 @@ export default class Scene1 extends Phaser.Scene {
   // Our move functions for the player
   moveLeft(player) {
     this.posX = this.player.x;
-    this.physics.moveTo(player, player.x + deltaX, player.y - deltaY, 200);
+    this.physics.moveTo(player, player.x + this.myCourt.tile_increment, player.y - this.myCourt.tile_increment, 200);
   }
 
   moveRight(player) {
     this.posX = this.player.x;
-    this.physics.moveTo(player, player.x + deltaX, player.y + deltaY, 200);
+    this.physics.moveTo(player, player.x + this.myCourt.tile_increment, player.y + this.myCourt.tile_increment, 200);
   }
 
   moveForward(player) {
     this.posX = this.player.x;
-    this.physics.moveTo(player, player.x + deltaX, player.y, 200);
+    this.physics.moveTo(player, player.x + this.myCourt.tile_increment, player.y, 200);
   }
 }
 //defender use group on tutorial same sprite use place holder.
 
 
-class CourtBoundaries {
+class Court {
 
-  title_increment;
-  full_X_border;
-  full_Y_border;
-  court_offset_X;
-  court_offset_Y;
-  court_border_X;
-  court_border_Y;
+  static tile_increment;
+  static full_X_border;
+  static full_Y_border;
+  static court_offset_X;
+  static court_offset_Y;
+  static court_border_X;
+  static court_border_Y;
 
   constructor(posX, posY) { //posX posY added for unrestricted placement of court
-      this.title_increment = 49;
+      this.tile_increment = 49;
       this.full_X_border = 1262 + posX;
       this.full_Y_border = 346 + posY;
       this.court_offset_X = 175;
