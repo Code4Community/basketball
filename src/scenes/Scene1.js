@@ -28,46 +28,37 @@ export default class Scene1 extends Phaser.Scene {
     this.add.image(0, 0, 'court').setOrigin(0,0);
     this.player = this.physics.add.sprite(0, 50, 'derrick').setOrigin(0,0);
     this.player.setScale(0.05);
-    let enemy = this.physics.add.sprite(600, 200, 'enemy').setOrigin(0,0);
-    enemy.setScale(.2);
+    let enemy = this.physics.add.sprite(200, 0, 'enemy').setOrigin(0,0);
+    enemy.setScale(.5);
+    
+    // Creating enemies group
+    let enemies = this.physics.add.group({
+      setScale: {x: .2, y: .2},
+      key: 'enemy',
+      repeat: 2,
+      setXY: {x: 850, y: 100, stepY: 85},
+    })
 
-// Creating three separate enemies
-    let enemy1 = this.physics.add.sprite(600, 200, 'enemy').setOrigin(0,0);
-    enemy1.setScale(.2, .2);
+    this.physics.add.enemies;
 
-    let enemy2 = this.physics.add.sprite(600, 200, 'enemy').setOrigin(0,0);
-    enemy2.setScale(.2, .2);
+     
 
-    let enemy3 = this.physics.add.sprite(600, 200, 'enemy').setOrigin(0,0);
-    enemy3.setScale(.2, .2);
+    //enemies.children.iterate(function (child) {
+       //this.physics.moveTo(child, child.x - 300, child.y - 300, 150)
+       //child.setVisible(false);
+    //});
 
-// Movement pattern for enemy1 (e.g., vertical movement)
-    this.tweens.add({
-      targets: enemy1,
-      y: '+=90',
-      duration: 1000,
+    //add to array seperately?
+
+    /*const tween = this.tweens.add({
+      targets: enemies.getChildren(),
+      x: "+=90",
+      duration: 1200,
       yoyo: true,
-      repeat: -1
-    });
+      repeat: -1,
+    });*/
 
-// Movement pattern for enemy2 (e.g., horizontal movement)
-    this.tweens.add({
-      targets: enemy2,
-      x: '+=100',
-      duration: 1500,
-      yoyo: true,
-      repeat: -1
-    });
-
-// Complex movement pattern for enemy3 (e.g., diagonal movement)
-    this.tweens.add({
-      targets: enemy3,
-      x: '+=120',
-      y: '+=120',
-      duration: 2000,
-      yoyo: true,
-      repeat: -1
-    });
+    
 
     // Creating keys for placeholder to call move functions
     this.keyLeft = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -84,7 +75,14 @@ export default class Scene1 extends Phaser.Scene {
     this.keyUp.on('down', (key, event) => {
       this.moveForward(this.player);
     });
+    this.physics.world.enable(this.player);
+    this.player.body.colliderWorldBounds = true;
+    this.physics.add.collider(enemies, this.player, this.turnover);
 
+  }
+  
+  turnover() {
+    console.log("Collided");
   }
 
   update() {
@@ -97,6 +95,7 @@ export default class Scene1 extends Phaser.Scene {
             this.player.setVelocity(0, 0);
         }
     }
+
   }
 
   // Our move functions for the player
