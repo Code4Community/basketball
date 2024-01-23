@@ -28,7 +28,7 @@ export default class Scene1 extends Phaser.Scene {
     this.player = this.physics.add.sprite(0, 50, 'derrick').setOrigin(0,0);
     this.player.setScale(0.05);
     let enemy = this.physics.add.sprite(200, 0, 'enemy').setOrigin(0,0);
-    enemy.setScale(1);
+    enemy.setScale(.5);
     
     // Creating enemies group
     let enemies = this.physics.add.group({
@@ -38,19 +38,26 @@ export default class Scene1 extends Phaser.Scene {
       setXY: {x: 850, y: 100, stepY: 85},
     })
 
+    this.physics.add.enemies;
+
+     
+
     //enemies.children.iterate(function (child) {
        //this.physics.moveTo(child, child.x - 300, child.y - 300, 150)
        //child.setVisible(false);
     //});
 
     //add to array seperately?
-    
-    // tween for enemies movement
-    this.tweens.add({
+
+    /*const tween = this.tweens.add({
       targets: enemies.getChildren(),
-      y: '+=90',
-      duration: 1200
-    });
+      x: "+=90",
+      duration: 1200,
+      yoyo: true,
+      repeat: -1,
+    });*/
+
+    
 
     // Creating keys for placeholder to call move functions
     this.keyLeft = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -70,7 +77,14 @@ export default class Scene1 extends Phaser.Scene {
       this.posX = this.player.x;
       this.moveForward(this.player);
     });
+    this.physics.world.enable(this.player);
+    this.player.body.colliderWorldBounds = true;
+    this.physics.add.collider(enemies, this.player, this.turnover);
 
+  }
+  
+  turnover() {
+    console.log("Collided");
   }
 
   update() {
@@ -83,6 +97,7 @@ export default class Scene1 extends Phaser.Scene {
             this.player.setVelocity(0, 0);
         }
     }
+
   }
 
   // Our move functions for the player
